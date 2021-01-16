@@ -8,7 +8,7 @@ if [ ! -d "/vpn" ]; then
     echo ""
     echo "[HINT ] Docked-VPN requires a script named 'run.sh' in '/vpn' directory of the container."
     echo "[HINT ] You can load the script by adding the script folder as a volume."
-    echo "[HINT ] Use '-v host-dir:/vpn' option to add the volume."
+    echo "[HINT ] Use '-v absolute-path-to-host-dir:/vpn' option to add the volume."
     echo ""
     echo "[HINT ] The directory can also contain other required config files."
     echo "[HINT ] run.sh typically contains the following single line:"
@@ -18,7 +18,7 @@ if [ ! -d "/vpn" ]; then
     echo ""
     echo ""
     echo "[HINT ] Use following command to start docked-vpn:"
-    echo "[HINT ]     docker run -v \$(pwd)/path-to-your-dir:/vpn --privileged seedbits/dockedvpn:latest"
+    echo "[HINT ]     docker run -v \$(pwd)/relative-path-to-config-dir:/vpn --privileged seedbits/dockedvpn:latest"
     echo ""
     echo ""
     exit 1
@@ -41,7 +41,7 @@ if [ ! -f /vpn/run.sh ]; then
     echo ""
     echo ""
     echo "[HINT ] Use following command to start docked-vpn:"
-    echo "[HINT ]     docker run -v \$(pwd)/path-to-your-dir:/vpn --privileged seedbits/dockedvpn:latest"
+    echo "[HINT ]     docker run -v \$(pwd)/relative-path-to-config-dir:/vpn --privileged seedbits/dockedvpn:latest"
     echo ""
     echo ""
     exit 1
@@ -57,7 +57,7 @@ if [[ $? -ne 0 ]]; then
     echo ""
     echo ""
     echo "[HINT ] Use following command to start docked-vpn:"
-    echo "[HINT ]     docker run -v \$(pwd)/path-to-your-dir:/vpn --privileged seedbits/dockedvpn:latest"
+    echo "[HINT ]     docker run -v \$(pwd)/relative-path-to-config-dir:/vpn --privileged seedbits/dockedvpn:latest"
     echo ""
     echo ""
     exit 1
@@ -87,4 +87,8 @@ done
 echo "[INFO ] Waiting for 3 secs ..."
 sleep 3
 echo "[INFO ] Starting squid ..."
-squid -N
+squid
+echo "--------------------------------------------------------"
+echo "[INFO ] Started proxy at "$(ip a | grep eth0 | grep -o -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v "255.255")":3128"
+echo "--------------------------------------------------------"
+wait
