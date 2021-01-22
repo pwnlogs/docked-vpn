@@ -19,3 +19,5 @@ where `my-config.conf` is the OpenVPN configuration of your VPN provider and my-
 
 ### Connecting to Docked-VPN
 Once the container starts up, you can use port 3128 of the container to connect to the proxy. Configure your browser/software to use this proxy to route your traffic through the VPN.
+
+For more information, please visit [my blog](https://blog.jithinpavithran.com/content/?article=docked-vpn).
