@@ -75,7 +75,7 @@ echo "[INFO ] Checking openvpn status"
 ip a | grep -q tun && touch /started-vpn || rm -f /started-vpn
 i=0
 while [ ! -f /started-vpn ]; do
-    if [[ "$i" -gt 10 ]]; then
+    if [[ "$i" -gt 15 ]]; then
         echo "[ERROR] Wait time exceeded, exiting ..."
         exit 1
     fi
