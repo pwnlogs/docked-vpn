@@ -1,6 +1,6 @@
 # Use alpine parent image
 FROM alpine:3.7
-LABEL maintainer="Jithin Pavithran <jithinpavithran.public@gmail.com>"
+LABEL maintainer="Jithin Pavithran <contact.jithinp@gmail.com>"
 # Expose port for squid
 EXPOSE 3128/tcp
 # install openvpn and bash and squid
